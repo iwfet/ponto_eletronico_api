@@ -19,23 +19,22 @@ const pool = new Pool({
 app.use(express.json());
 app.use(cors());
 
-// Rota para inserir um registro no banco de dados
 app.post('/inserir-registro', async (req, res) => {
-    const { acao } = req.body;
-    const data_hora = new Date(); // Obtém a data e hora atuais
-  
-    try {
-      const result = await pool.query(
-        'INSERT INTO registros (acao, data_hora) VALUES ($1, $2) RETURNING *',
-        [acao, data_hora]
-      );
-  
-      res.json(result.rows[0]);
-    } catch (error) {
-      console.error('Erro ao inserir registro:', error);
-      res.status(500).json({ erro: 'Erro ao inserir registro' });
-    }
-  });
+  const { acao, data_hora } = req.body; // Obter a ação e a data/hora da solicitação
+
+  try {
+    const result = await pool.query(
+      'INSERT INTO registros (acao, data_hora) VALUES ($1, $2) RETURNING *',
+      [acao, data_hora]
+    );
+
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error('Erro ao inserir registro:', error);
+    res.status(500).json({ erro: 'Erro ao inserir registro' });
+  }
+});
+
 
 // Rota para buscar registros por data
 app.get('/buscar-registros', async (req, res) => {
