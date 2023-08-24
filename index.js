@@ -6,10 +6,10 @@ const app = express();
 const port = process.env.PORT || 5000; // Porta do servidor
 
 const pool = new Pool({
-    user: 'ponto_eletronico',
-    host: 'localhost',
-    database: 'ponto_eletronico',
-    password: 'ponto_eletronico',
+    user: 'danilovnunes01',
+    host: 'ep-misty-silence-65821622.us-east-2.aws.neon.tech',
+    database: 'neondb',
+    password: 'IN9dkhPJ7jsx',
     port: 5432,
   });
 
