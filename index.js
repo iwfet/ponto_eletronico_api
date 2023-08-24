@@ -11,6 +11,9 @@ const pool = new Pool({
     database: 'neondb',
     password: 'IN9dkhPJ7jsx',
     port: 5432,
+     ssl: {
+    rejectUnauthorized: false // Isso desativa a verificação de certificado SSL, apenas para fins de teste. Em produção, é altamente recomendável usar um certificado válido.
+  }
   });
 
 app.use(express.json());
